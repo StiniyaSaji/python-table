@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <style>
+        table, th, td {
+        border: 1px solid white;
+        border-collapse: collapse;
+        }
+        th, td {
+           background-color: LightGray  ;
+            }
+
+    </style>
+</head>
+<body>
+     <div class="container">
+       <form action="create" method="POST">
+           {% csrf_token %}
+         <label for="fname">First_Name</label>
+         <input type="text" id="fname" name="fname">
+         <label for="lname">Last_Name</label>
+         <input type="text" id="lname" name="lname">
+         <button type="submit" class="btn btn-primary">ADD</button>
+       </form><br>
+     </div>
+      <table width="50%">
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Action</th>
+           </tr>
+          {% for i in members %}
+            <tr>
+                <td>{{ i.first_name }}</td>
+                <td>{{ i.last_name }}</td>
+                <td><button><a type="submit" class="btn btn-primary" href="edit/{{ i.id }}">Edit</a></button>
+                    <button><a type="submit" class="btn btn-primary" href="delete/{{ i.id }}">Delete</a></button>
+                </td>
+            </tr>
+        {% endfor %}
+      </table>
+
+
+</body>
+</html>
